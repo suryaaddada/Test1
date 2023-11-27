@@ -8,25 +8,28 @@ export const ViewBookDetails = () => {
   const[search,setSearch]=useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
 
-  const getToken=()=>sessionStorage.getItem("token")|| sessionStorage.getItem("token1") ;
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const response = await fetch("https://localhost:7288/api/Book/Get All Books",{
+          method:"GET",
           headers:{
-            Authorization:`Bearer ${getToken}`
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${sessionStorage.getItem("token")}`,
           },
+          
         });
+        console.log(response);
         if (response.ok) {
           const data = await response.json();
           setBooks(data);
           setFilteredBooks(data)
         } else {
-          console.error("Error fetching books:", response.statusText);
+          console.error("Error fetching books else:", response.statusText);
         }
       } catch (error) {
-        console.error("Error fetching books:", error);
+        console.error("Error fetching books catch:", error);
       }
     };
 

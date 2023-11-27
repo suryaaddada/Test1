@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Book.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
+    [Authorize(Roles ="admin")]
     public class BookController : ControllerBase
     {
         private readonly bookContext context;
@@ -18,7 +20,7 @@ namespace Book.Controllers
             this.logger = logger;
         }
 
-       // [Authorize]
+       
         [HttpGet("Get All Books")]
         public IActionResult GetBooks()
         {

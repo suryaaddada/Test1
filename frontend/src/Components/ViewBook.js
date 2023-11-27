@@ -17,7 +17,11 @@ export const ViewBook=()=>{
     useEffect(()=>{
        const fetchBook=async()=>{
             const id=new URLSearchParams(window.location.search).get('id');
-            const data=await fetch(`https://localhost:7288/api/Book/GetBookById/${id}`)
+            const data=await fetch(`https://localhost:7288/api/Book/GetBookById/${id}`,{
+                headers:{
+                    Authorization:`Bearer ${sessionStorage.getItem("token")}`,
+                }
+            })
 
             const response=await data.json();
             console.log(response);
@@ -44,6 +48,7 @@ export const ViewBook=()=>{
                     method:'PUT',
                     headers:{
                         'Content-Type':'application/json',
+                        Authorization:`Bearer ${sessionStorage.getItem("token")}`,
                     },
                     body:JSON.stringify(data),
                 }) 
@@ -159,6 +164,7 @@ export const ViewBook=()=>{
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
+                Authorization:`Bearer ${sessionStorage.getItem("token")}`,
               },
             });
       

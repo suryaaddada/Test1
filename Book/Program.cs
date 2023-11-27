@@ -39,13 +39,14 @@ namespace Book
                     ValidIssuer = configuration["JWT:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                 };
-            }).AddGoogle(options =>
-            {
-                options.SaveTokens = true;
-
-                options.ClientId = "485947985520-2929tagfo657ogj3ghljgq3e51rle2em.apps.googleusercontent.com";
-                options.ClientSecret = "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";
             });
+            //.AddGoogle(options =>
+            //{
+            //    options.SaveTokens = true;
+
+            //    options.ClientId = "485947985520-2929tagfo657ogj3ghljgq3e51rle2em.apps.googleusercontent.com";
+            //    options.ClientSecret = "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";
+            //});
 
             builder.Services.AddLogging(b =>
             {
@@ -76,7 +77,13 @@ namespace Book
 
             app.UseHttpsRedirection();
 
-            app.UseCors(x=>x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin=>true).AllowCredentials());
+            app.UseCors(builder => builder
+            
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .SetIsOriginAllowed(origin => true)  // You can keep this line if it's necessary for your use case
+            .AllowCredentials()
+            );
 
             app.UseRouting();
             app.UseAuthentication();

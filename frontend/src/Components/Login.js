@@ -23,7 +23,7 @@ useEffect(()=>{
 
     useEffect(()=>{
      setIsLogged(sessionStorage.getItem("Login"));
-        console.log(islogged);
+        console.log('login',islogged);
     },[]);
 
     const handleSubmit=async(e)=>{
@@ -44,6 +44,7 @@ useEffect(()=>{
                 const reply =await response.json();
                 setId(reply.id);
                 sessionStorage.setItem('token',reply.token);
+                sessionStorage.setItem('role','admin');
                 console.log("after",reply.id)
                 sessionStorage.setItem("Login",true);
                 setIsLogged(true);
