@@ -16,6 +16,8 @@ useEffect(()=>{
     }, 3000); 
     return ()=>clearTimeout(timer);
 },[errors])
+
+
     const handleReset=()=>{
         setPassword('');
         setEmail('');
@@ -42,6 +44,9 @@ useEffect(()=>{
                 }); 
                 console.log("ok");
                 const reply =await response.json();
+                console.log("reply",reply);
+                if(reply.status!==400)
+                {
                 setId(reply.id);
                 sessionStorage.setItem('token',reply.token);
                 sessionStorage.setItem('role','admin');
@@ -50,6 +55,14 @@ useEffect(()=>{
                 setIsLogged(true);
                 navigate(`admin?id=${reply.id}`)
                 handleReset();
+                }
+                else{
+                    Swal.fire({
+                        title:"Login Failed. Try again",
+                        icon:'error',
+                        timer:1000,
+                    })
+                }
                 
             }catch(error)
             {

@@ -22,6 +22,7 @@ export const ChangePassword=()=>{
     
         fetchUser();
       }, []);
+      
       const handleUpdate=async()=>{
         const isApproved=await Swal.fire({
             title: 'Are you sure?',

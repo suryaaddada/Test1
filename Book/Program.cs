@@ -41,13 +41,7 @@ namespace Book
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                 };
             });
-            //.AddGoogle(options =>
-            //{
-            //    options.SaveTokens = true;
-
-            //    options.ClientId = "485947985520-2929tagfo657ogj3ghljgq3e51rle2em.apps.googleusercontent.com";
-            //    options.ClientSecret = "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";
-            //});
+            
 
             builder.Services.AddLogging(b =>
             {
@@ -62,9 +56,9 @@ namespace Book
 
             builder.Logging.AddSerilog();
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            
             builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
+           
             builder.Services.AddSwaggerGen(opt =>
             {
                 opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
